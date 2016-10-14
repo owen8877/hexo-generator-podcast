@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>{{ config.title | xml_escape }}</title>
+    <link>{{ config.url }}{{ config.baseurl }}/</link>
+    <copyright>{{ config.copyright }}</copyright>
+    <itunes:subtitle></itunes:subtitle>
+    <itunes:author>{{ config.author }}</itunes:author>
+    <itunes:summary>{{ config.description | xml_escape }}</itunes:summary>  
+    <itunes:owner>
+      <itunes:name>{{ config.owner }}</itunes:name>
+      <itunes:email>{{ config.email }}</itunes:email>
+    </itunes:owner>
+    <itunes:image href="{{config.default_thumb}}" />
+    <itunes:category text="{{ config.category }}"/>
+    {% for post in config.categories['podcast'] %}
+    <item>
+      <title>{{ post.title | xml_escape}}</title>
+      <description> {{ post.excerpt | strip_html | xml_escape }} </description>
+      <itunes:author> {{ post.author }}</itunes:author>
+      <itunes:subtitle> {{ post.subtitle }}</itunes:subtitle>
+      <itunes:summary> {{ post.excerpt | strip_html | xml_escape }} </itunes:summary>
+      <itunes:image href="{%if post.thumb %}{%if post.thumb contains '://' %}{{post.thumb}}{% else %}{{config.url}}{{"/assets/img/podcast/" | prepend: config.baseurl}}{{post.thumb}}{%endif%}{%else%}{{config.default_thumb}}{%endif%}" />
+      <enclosure url="{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
+      <guid></guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <itunes:duration>{{ post.duration }}</itunes:duration>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
