@@ -5,20 +5,13 @@ var assign = require('object-assign');
 var pathFn = require('path');
 
 var config = hexo.config.podcast = assign({
-  type: 'atom',
+  type: 'rss2',
   limit: 20,
   hub: '',
   content: true
 }, hexo.config.podcast);
 
 var type = config.type.toLowerCase();
-
-// Check feed type
-if (type !== 'atom' && type !== 'rss2') {
-  config.type = 'atom';
-} else {
-  config.type = type;
-}
 
 // Set default feed path
 if (!config.path) {
