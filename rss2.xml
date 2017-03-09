@@ -8,15 +8,15 @@
     <itunes:author>{{ config.author }}</itunes:author>
     <itunes:summary>{{ config.description | xml_escape }}</itunes:summary>
     <itunes:owner>
-      <itunes:name>{{ config.owner }}</itunes:name>
-      <itunes:email>{{ config.email }}</itunes:email>
+      <itunes:name>{{ config.podcast.owner }}</itunes:name>
+      <itunes:email>{{ config.podcast.email }}</itunes:email>
     </itunes:owner>
     <itunes:image href="{{ config.url }}{{ config.default_thumb }}" />
-    <itunes:category text="{{ config.category }}">
-      <itunes:category text="{{ config.category }}" />
+    <itunes:category text="{{ config.podcast.category }}">
+      <itunes:category text="{{ config.podcast.category }}" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
-    <language>{{ config.language }}</language>
+    <language>{{ config.podcast.language }}</language>
     {% for post in podcast_posts %}
     <item>
       <title>{{ post.title | xml_escape}}</title>
@@ -24,8 +24,8 @@
       <itunes:author> {{ config.author }}</itunes:author>
       <itunes:subtitle> {{ post.subtitle }}</itunes:subtitle>
       <itunes:summary> {{ post.excerpt | strip_html | xml_escape }} </itunes:summary>
-      <itunes:image href="{{config.default_thumb}}" />
-      <enclosure url="{{ config.url }}{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
+      <itunes:image href="{{ config.podcast.url }}{{ post.image }}" />
+      <enclosure url="{{ config.podcast.url }}{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
       <guid></guid>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       <itunes:duration>{{ post.duration }}</itunes:duration>
