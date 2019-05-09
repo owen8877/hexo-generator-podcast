@@ -11,27 +11,27 @@
       <itunes:name>{{ config.podcast.owner }}</itunes:name>
       <itunes:email>{{ config.podcast.email }}</itunes:email>
     </itunes:owner>
-    <itunes:image href="{{ config.url }}{{ config.default_thumb }}" />
+    <itunes:image href="{{ config.url }}{{ config.default_thumb }}"/>
     <itunes:category text="{{ config.podcast.category }}">
-      <itunes:category text="{{ config.podcast.category }}" />
+      <itunes:category text="{{ config.podcast.category }}"/>
     </itunes:category>
-    <itunes:explicit>no</itunes:explicit>
+    <itunes:explicit>{{ config.podcast.explicit }}</itunes:explicit>
     <language>{{ config.podcast.language }}</language>
     {% for post in podcast_posts %}
     <item>
       <title>{{ post.title | xml_escape}}</title>
-      <description> {{ post.content | strip_html | xml_escape }} </description>
-      <itunes:author> {{ config.author }}</itunes:author>
-      <itunes:subtitle> {{ post.subtitle }}</itunes:subtitle>
-      <itunes:summary> {{ post.excerpt | strip_html | xml_escape }} </itunes:summary>
-      <itunes:image href="{{ config.podcast.url }}{{ post.image }}" />
+      <description>{{ post.content | strip_html | xml_escape }}</description>
+      <itunes:author>{{ config.author }}</itunes:author>
+      <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
+      <itunes:summary>{{ post.excerpt | strip_html | xml_escape }}</itunes:summary>
+      <itunes:image href="{{ config.podcast.url }}{{ post.image }}"/>
       <enclosure url="{{ config.podcast.url }}{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
       <guid></guid>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       <itunes:duration>{{ post.duration }}</itunes:duration>
       <psc:chapters version="1.2" xmlns:psc="http://podlove.org/simple-chapters">
         {% for chapter in post.chapters %}
-          <psc:chapter start="{{ chapter[0] }}" title="{{ chapter[1] | xml_escape }}" />
+        <psc:chapter start="{{ chapter[0] }}" title="{{ chapter[1] | xml_escape }}"/>
         {% endfor %}
       </psc:chapters>
     </item>
