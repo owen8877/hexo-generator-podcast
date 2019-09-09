@@ -10,14 +10,8 @@ let config = hexo.config.podcast = Object.assign({
   content: true,
 }, hexo.config.podcast)
 
-const type = config.type.toLowerCase()
-
-// Check feed type
-if (type !== 'atom' && type !== 'rss2') {
-  config.type = 'atom'
-} else {
-  config.type = type
-}
+// Actually Apple requires the feed to be always rss2 (see https://github.com/simplepie/simplepie-ng/wiki/Spec:-iTunes-Podcast-RSS)
+config.type = 'rss2'
 
 // Set default feed path
 // Notice: the default value is 'podcast.xml' to avoid accidentally overwrite 'rss2.xml' or 'atom.xml'

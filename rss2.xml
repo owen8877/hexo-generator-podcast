@@ -20,10 +20,10 @@
     {% for post in podcast_posts %}
     <item>
       <title>{{ post.title | xml_escape}}</title>
-      <description>{{ post.content | strip_html | xml_escape }}</description>
+      <description>{{ post.content | noControlChars | strip_html | xml_escape }}</description>
       <itunes:author>{{ config.author }}</itunes:author>
       <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
-      <itunes:summary>{{ post.excerpt | strip_html | xml_escape }}</itunes:summary>
+      <itunes:summary>{{ post.excerpt | noControlChars | strip_html | xml_escape }}</itunes:summary>
       <itunes:image href="{{ config.podcast.url }}{{ post.image }}"/>
       <enclosure url="{{ config.podcast.url }}{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
       <guid></guid>
