@@ -1,26 +1,33 @@
 /* global hexo */
 'use strict';
 
-var assign = require('object-assign');
-var pathFn = require('path');
+const path = require('path')
 
-var config = hexo.config.podcast = assign({
+let config = hexo.config.podcast = Object.assign({
   type: 'rss2',
   limit: 20,
   hub: '',
-  content: true
-}, hexo.config.podcast);
+  content: true,
+}, hexo.config.podcast)
 
-var type = config.type.toLowerCase();
+const type = config.type.toLowerCase()
+
+// Check feed type
+if (type !== 'atom' && type !== 'rss2') {
+  config.type = 'atom'
+} else {
+  config.type = type
+}
 
 // Set default feed path
+// Notice: the default value is 'podcast.xml' to avoid accidentally overwrite 'rss2.xml' or 'atom.xml'
 if (!config.path) {
-  config.path = config.type + '.xml';
+  config.path = 'podcast.xml'
 }
 
 // Add extension name if don't have
-if (!pathFn.extname(config.path)) {
-  config.path += '.xml';
+if (!path.extname(config.path)) {
+  config.path += '.xml'
 }
 
-hexo.extend.generator.register('podcast', require('./lib/generator'));
+hexo.extend.generator.register('podcast', require('./lib/generator'))
