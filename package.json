@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-podcast",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,9 @@
   "author": "xDroid",
   "license": "ISC",
   "dependencies": {
+    "locutus": "^2.0.11",
     "nunjucks": "^3.2.0",
     "object-assign": "^4.0.1",
-    "string": "^3.3.3",
     "xml-escape": "^1.1.0"
   }
 }
