@@ -7,6 +7,7 @@
     <itunes:subtitle></itunes:subtitle>
     <itunes:author>{{ config.author }}</itunes:author>
     <itunes:summary>{{ config.description | xml_escape }}</itunes:summary>
+    <description>{{ config.description | xml_escape }}</description>
     <itunes:owner>
       <itunes:name>{{ config.podcast.owner }}</itunes:name>
       <itunes:email>{{ config.podcast.email }}</itunes:email>
