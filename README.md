@@ -1,5 +1,5 @@
 # hexo-generator-podcast
-## version 2.0.0
+## version 2.0.8
 - Not compatible with 1.y.z! (Just to remind you that the configs are moved)
 
 ## install
