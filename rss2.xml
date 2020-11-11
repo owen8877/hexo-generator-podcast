@@ -27,7 +27,7 @@
       <itunes:summary>{{ post.excerpt | noControlChars | strip_html | xml_escape }}</itunes:summary>
       <itunes:image href="{{ config.podcast.url }}{{ post.image }}"/>
       <enclosure url="{{ config.podcast.url }}{{ post.media }}" length="{{ post.length }}" type="{{ post.mediatype }}"/>
-      <guid></guid>
+      <guid>{{ post.permalink }}</guid>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       <itunes:duration>{{ post.duration }}</itunes:duration>
       <psc:chapters version="1.2" xmlns:psc="http://podlove.org/simple-chapters">
